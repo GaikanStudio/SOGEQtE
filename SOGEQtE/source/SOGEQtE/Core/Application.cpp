@@ -35,9 +35,13 @@ namespace sogeqte
         m_qtApplication.reset(nullptr);
     }
 
-    int QTEApplication::Run()
+    QGuiApplication* QTEApplication::GetGUIApplication() const
+    {
+        return m_qtApplication.get();
+    }
+
+    void QTEApplication::Run()
     {
         m_mainWindow->show();
-        return m_qtApplication->exec();
     }
 }

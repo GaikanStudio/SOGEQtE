@@ -28,7 +28,8 @@ namespace sogeqte
         QTEApplication(int& argc, char** argv, const QString& aApplicationName);
         ~QTEApplication();
 
-        int Run();
+        QGuiApplication* GetGUIApplication() const;
+        void Run();
 
     };
 }

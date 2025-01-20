@@ -1,6 +1,7 @@
 #ifndef SOGEQTE_LAYERS_MAINLAYER_HPP
 #define SOGEQTE_LAYERS_MAINLAYER_HPP
 
+#include "SOGEQtE/Core/Application.hpp"
 #include <SOGE/SOGE.hpp>
 
 
@@ -8,6 +9,9 @@ namespace sogeqte
 {
     class MainLayer final : public soge::Layer
     {
+    private:
+        QTEApplication* app = nullptr;
+
     public:
         explicit MainLayer();
         ~MainLayer();
