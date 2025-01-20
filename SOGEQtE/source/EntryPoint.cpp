@@ -1,6 +1,8 @@
 #include "SOGEQtE/EntryPoint.hpp"
 #include "SOGEQtE/Layers/MainLayer.hpp"
 
+#include <SOGE/Core/EntryPoint.hpp>
+
 
 namespace sogeqte
 {

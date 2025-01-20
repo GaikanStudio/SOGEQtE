@@ -1,10 +1,35 @@
 include "Premake5/scripts/helpers.lua"
 include "dependencies.lua"
 
+include "Premake5/ext/qt-scripts/qt.lua"
+
+
+qt = premake.extensions.qt
+
+qt_path = "A:/DevTools/Qt/6.5.3/msvc2019_64"
+
+qt_version = "6"
+qt_libs_path = qt_path .. "/lib"
+qt_dlls_path = qt_path .. "/bin"
+qt_plugins_path = qt_path .. "/plugins"
+
+qt_qmake_path = qt_dlls_path .. "/qmake6.exe"
+qt_windeployqt6_path = qt_dlls_path .. "/windeployqt6.exe"
+qt_uic_path = qt_dlls_path .. "/uic.exe"
+
+function setQtDeployOnPostbuild(targetExecutable, isDebug)
+    config_flag = " --debug "
+    if not isDebug then
+        config_flag = " --release "
+    end
+
+    return "call " .. qt_windeployqt6_path .. " " .. targetExecutable .. config_flag
+end
+
 print(os.date() .. " Initialize submodules...")
 os.execute("git submodule update --init --recursive")
 
-workspace "SOGE"
+workspace "SOGEQtE"
     architecture "x64"
     startproject "SOGEQtE"
     configurations {"Debug", "Release"}

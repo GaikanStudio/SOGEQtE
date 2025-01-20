@@ -2,35 +2,16 @@ include "Premake5/scripts/helpers.lua"
 include "dependencies.lua"
 
 include "sogeqte-dependencies.lua"
-include "Premake5/ext/qt-scripts/qt.lua"
 
-
-qt = premake.extensions.qt
-
-local qt_path = "A:/DevTools/Qt/6.5.3/msvc2019_64"
-
-local qt_version = "6"
-local qt_libs_path = qt_path .. "/lib"
-local qt_dlls_path = qt_path .. "/bin"
-local qt_plugins_path = qt_path .. "/plugins"
-
-local qt_qmake_path = qt_dlls_path .. "/qmake6.exe"
-local qt_windeployqt6_path = qt_dlls_path .. "/windeployqt6.exe"
-local qt_uic_path = qt_dlls_path .. "/uic.exe"
-
-local function setQtDeployOnPostbuild(targetExecutable, isDebug)
-    config_flag = " --debug "
-    if not isDebug then
-        config_flag = " --release "
-    end
-
-    return "call " .. qt_windeployqt6_path .. " " .. targetExecutable .. config_flag
-end
+group "Dependencies"
+    include "SOGEQtE/3rdparty/ADS/premake5.lua"
+group ""
 
 project "SOGEQtE"
     location "SOGEQtE"
     kind "ConsoleApp"
     buildoptions {"/Zc:__cplusplus", "/permissive-"}
+    staticruntime "on"
     language "C++"
     cppdialect "C++20"
 
@@ -48,7 +29,7 @@ project "SOGEQtE"
         -- Application
 
         "%{wks.location}/%{prj.name}/include",
-        "%{wks.location}/%{SOGEQtEThirdpartyDirs.ADS}",
+        "%{wks.location}/%{prj.name}/%{SOGEQtEThirdpartyDirs.ADS}",
 
         -- Engine
 
