@@ -40,13 +40,41 @@ project "SOGEQtE"
     files
     {
         "%{wks.location}/%{prj.name}/include/**.hpp",
-        "%{wks.location}/%{prj.name}/source/**.cpp",
+        "%{wks.location}/%{prj.name}/source/**.cpp"
     }
 
     includedirs
     {
+        -- Application
+
         "%{wks.location}/%{prj.name}/include",
-        "%{wks.location}/%{SOGEQtEThirdpartyDirs.ADS}"
+        "%{wks.location}/%{SOGEQtEThirdpartyDirs.ADS}",
+
+        -- Engine
+
+        "%{wks.location}/SOGE/include",
+        "%{wks.location}/%{IncludeThirdpartyDirs.spdlog}",
+        "%{wks.location}/%{IncludeThirdpartyDirs.backwardcpp}",
+        "%{wks.location}/%{IncludeThirdpartyDirs.EASTL}",
+        "%{wks.location}/%{IncludeThirdpartyDirs.EABase}",
+        "%{wks.location}/%{IncludeThirdpartyDirs.UUID_v4}",
+        "%{wks.location}/%{IncludeThirdpartyDirs.eventpp}",
+        "%{wks.location}/%{IncludeThirdpartyDirs.kangaru}",
+        "%{wks.location}/%{IncludeThirdpartyDirs.eventpp}",
+        "%{wks.location}/%{IncludeThirdpartyDirs.SDL3}",
+        "%{wks.location}/%{IncludeThirdpartyDirs.cppfs}",
+        "%{wks.location}/%{IncludeThirdpartyDirs.FMOD}",
+        "%{wks.location}/%{IncludeThirdpartyDirs.glm}",
+        "%{wks.location}/%{IncludeThirdpartyDirs.XoshiroCpp}",
+        "%{wks.location}/%{IncludeThirdpartyDirs.SDL3}",
+        "%{wks.location}/%{IncludeThirdpartyDirs.NRI}",
+        "%{wks.location}/%{IncludeThirdpartyDirs.NVRHI}",
+        "%{wks.location}/%{IncludeThirdpartyDirs.MONO}"
+    }
+
+    defines
+    {
+        "GLM_ENABLE_EXPERIMENTAL"
     }
 
     qt.enable()
@@ -57,8 +85,19 @@ project "SOGEQtE"
 
     links
     {
+        "SOGE",
         "ADS"
     }
+
+    filter "system:windows"
+        systemversion "latest"
+        kind 'WindowedApp'
+        entrypoint "wWinMainCRTStartup"
+
+        defines
+        {
+            "SOGE_WINDOWS"
+        }
 
     filter "configurations:Debug"
         symbols "on"

@@ -6,7 +6,7 @@ os.execute("git submodule update --init --recursive")
 
 workspace "SOGE"
     architecture "x64"
-    -- startproject "GAME"
+    startproject "SOGEQtE"
     configurations {"Debug", "Release"}
 
     buildpattern = "%{cfg.buildcfg}.%{cfg.system}.%{cfg.architecture}"
@@ -100,9 +100,9 @@ workspace "SOGE"
 
         postbuildcommands
         {
-            "{COPYFILE} %{wks.location}/%{Libraries.FMOD_WIN64_FSBANK_DLL} %{wks.location}/GAME",
-            "{COPYFILE} %{wks.location}/%{Libraries.FMOD_WIN64_LIBFSVORBIS_DLL} %{wks.location}/GAME",
-            "{COPYFILE} %{wks.location}/%{Libraries.FMOD_WIN64_OPUS_DLL} %{wks.location}/GAME"
+            "{COPYFILE} %{wks.location}/%{Libraries.FMOD_WIN64_FSBANK_DLL} %{wks.location}/SOGEQtE",
+            "{COPYFILE} %{wks.location}/%{Libraries.FMOD_WIN64_LIBFSVORBIS_DLL} %{wks.location}/SOGEQtE",
+            "{COPYFILE} %{wks.location}/%{Libraries.FMOD_WIN64_OPUS_DLL} %{wks.location}/SOGEQtE"
         }
 
         prebuildcommands
@@ -111,7 +111,7 @@ workspace "SOGE"
             {
                 platform = shadermake_platform.DXIL,
                 config = "%{!wks.location}/SOGE/resources/shaders/config.shadermake",
-                output = "%{!wks.location}/GAME/resources/shaders"
+                output = "%{!wks.location}/SOGEQtE/resources/shaders"
             }
         }
 
@@ -164,12 +164,12 @@ workspace "SOGE"
 
             postbuildcommands
             {
-                "{COPYFILE} %{wks.location}/%{Libraries.SDL3_DLL_D} %{wks.location}/GAME",
-                "{COPYFILE} %{wks.location}/%{Libraries.NRI_DLL_D} %{wks.location}/GAME",
-                "{COPYFILE} %{wks.location}/%{Libraries.NRI_AMDAGS_DLL_D} %{wks.location}/GAME",
-                "{COPYFILE} %{wks.location}/%{Libraries.FMOD_WIN64_CORE_DLL_D} %{wks.location}/GAME",
-                "{COPYFILE} %{wks.location}/%{Libraries.FMOD_WIN64_CORE_DLL_R} %{wks.location}/GAME", -- For FMOD Studio 
-                "{COPYFILE} %{wks.location}/%{Libraries.FMOD_WIN64_STUDIO_DLL_D} %{wks.location}/GAME"
+                "{COPYFILE} %{wks.location}/%{Libraries.SDL3_DLL_D} %{wks.location}/SOGEQtE",
+                "{COPYFILE} %{wks.location}/%{Libraries.NRI_DLL_D} %{wks.location}/SOGEQtE",
+                "{COPYFILE} %{wks.location}/%{Libraries.NRI_AMDAGS_DLL_D} %{wks.location}/SOGEQtE",
+                "{COPYFILE} %{wks.location}/%{Libraries.FMOD_WIN64_CORE_DLL_D} %{wks.location}/SOGEQtE",
+                "{COPYFILE} %{wks.location}/%{Libraries.FMOD_WIN64_CORE_DLL_R} %{wks.location}/SOGEQtE", -- For FMOD Studio 
+                "{COPYFILE} %{wks.location}/%{Libraries.FMOD_WIN64_STUDIO_DLL_D} %{wks.location}/SOGEQtE"
             }
 
         filter "configurations:Release"
@@ -207,12 +207,14 @@ workspace "SOGE"
 
             postbuildcommands
             {
-                "{COPYFILE} %{wks.location}/%{Libraries.SDL3_DLL_R} %{wks.location}/GAME",
-                "{COPYFILE} %{wks.location}/%{Libraries.NRI_DLL_R} %{wks.location}/GAME",
-                "{COPYFILE} %{wks.location}/%{Libraries.NRI_AMDAGS_DLL_R} %{wks.location}/GAME",
-                "{COPYFILE} %{wks.location}/%{Libraries.FMOD_WIN64_CORE_DLL_R} %{wks.location}/GAME",
-                "{COPYFILE} %{wks.location}/%{Libraries.FMOD_WIN64_STUDIO_DLL_R} %{wks.location}/GAME"
+                "{COPYFILE} %{wks.location}/%{Libraries.SDL3_DLL_R} %{wks.location}/SOGEQtE",
+                "{COPYFILE} %{wks.location}/%{Libraries.NRI_DLL_R} %{wks.location}/SOGEQtE",
+                "{COPYFILE} %{wks.location}/%{Libraries.NRI_AMDAGS_DLL_R} %{wks.location}/SOGEQtE",
+                "{COPYFILE} %{wks.location}/%{Libraries.FMOD_WIN64_CORE_DLL_R} %{wks.location}/SOGEQtE",
+                "{COPYFILE} %{wks.location}/%{Libraries.FMOD_WIN64_STUDIO_DLL_R} %{wks.location}/SOGEQtE"
             }
+
+    include "sogeqte-premake.lua"
 
 -----------------------
 --- Overrides
